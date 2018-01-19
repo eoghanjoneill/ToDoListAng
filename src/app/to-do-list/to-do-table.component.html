@@ -1,0 +1,18 @@
+<div class='table-responsive'>
+  <table class='table' *ngIf='tasks && tasks.length'>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>To Do Task</th>
+        <th>Date Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let task of tasks'>
+        <td>{{task.category}}</td>
+        <td>{{task.name}}</td>
+        <td>{{task.dateCreated}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
