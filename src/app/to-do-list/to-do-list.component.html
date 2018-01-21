@@ -1,0 +1,5 @@
+<div *ngIf='toDoList'>
+<button class='btn' (click)='newTask()'>Add task</button>
+<app-edit-task [task]='selectedTask' (submitted)='insertNewTask()'></app-edit-task>
+<app-to-do-table [tasks]='toDoList._allTasks' (selectedTask)='selectedTaskChange($event)'></app-to-do-table>
+</div>

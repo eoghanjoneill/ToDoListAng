@@ -5,13 +5,19 @@
         <th>Category</th>
         <th>To Do Task</th>
         <th>Date Created</th>
+        <th>Done?</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor='let task of tasks'>
         <td>{{task.category}}</td>
         <td>{{task.name}}</td>
-        <td>{{task.dateCreated}}</td>
+        <td>{{task.dateCreated | date}}</td>
+        <td class='{{task.done ? "bg-success" : "" }}'>
+          <span class='glyphicon {{task.done ? "glyphicon-ok" : "glyphicon-remove" }}'></span>
+        </td>
+        <td><button class='btn' (click)='selectTask(task)'>Edit</button></td>
       </tr>
     </tbody>
   </table>

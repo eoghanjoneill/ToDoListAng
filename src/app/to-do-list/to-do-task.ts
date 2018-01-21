@@ -1,7 +1,7 @@
 export interface IToDoTask {
   name: string;
   category: string;
-  dueDate: Date;
+  dueDate: number;
   done: boolean;
-  dateCreated: Date;  
+  dateCreated: number;  
  }

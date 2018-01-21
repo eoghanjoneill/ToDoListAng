@@ -6,13 +6,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ToDoTableComponent } from './to-do-list/to-do-table.component';
 import { ToDoListService } from './to-do-list/to-do-list.service';
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
+import { EditTaskComponent } from './to-do-list/edit-task/edit-task.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoTableComponent
+    ToDoTableComponent,
+    ToDoListComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
