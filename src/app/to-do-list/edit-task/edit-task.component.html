@@ -1,19 +1,19 @@
-<section *ngIf='_task' class='panel'>
+<section *ngIf='task' class='panel'>
   <form (ngSubmit)='onSubmit()' #taskForm='ngForm'>
     <p>{{operationText}} action:</p>
     <div class='row'>
+      <div class='col col-md-3 form-group'>
+        <label for='category'>Category:</label><input class='form-control' type='text' name='category' id='category' [(ngModel)]='task.category' list="">
+      </div>
+      <div class='col col-md-5 form-group'>
+        <label for='name'>Name:</label><input class='form-control' type='text' name='name' [(ngModel)]='task.name' required >
+      </div>
       <div class='col col-md-2 form-group'>
-        <label>Category:</label><input class='form-control' type='text' name='category' [(ngModel)]='_task.category' list="">
-      </div>
-      <div class='col col-md-4 form-group'>
-        <label>Name:</label><input class='form-control' type='text' name='name' [(ngModel)]='_task.name' required>
+        <label>Done?:</label><input class='form-control' type='checkbox' name='done' [(ngModel)]='task.done'>
       </div>
       <div class='col col-md-2 form-group'>
-        <label>Done?:</label><input class='form-control' type='checkbox' name='done' [(ngModel)]='_task.done'>
-      </div>
-      <div class='col col-md-1 form-group'>
         <button type='submit' class='btn btn-success'
-          [disabled]='!taskForm.form.valid' [hidden]='!isInsert'>Submit</button>
+          [disabled]='!taskForm.form.valid' [hidden]='!isInsert'>{{_operationText}}</button>
       </div>
     </div>
     

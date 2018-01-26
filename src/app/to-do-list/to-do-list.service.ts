@@ -30,4 +30,9 @@ export class ToDoListService {
     console.log(err.message);
     return Observable.throw(err.message);
   }
+
+  postToDoList(list: IToDoList): Observable<string> {
+    return this._http.post<string>(this._toDoListUrl, list)
+      .catch(this.handleError);
+  }
 }

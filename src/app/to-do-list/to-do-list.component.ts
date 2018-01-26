@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IToDoTask } from './to-do-task';
 import { IToDoList } from './to-do-list';
 import { ToDoListService } from './to-do-list.service';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Component({
   selector: 'app-to-do-list',
@@ -11,6 +12,8 @@ import { ToDoListService } from './to-do-list.service';
 export class ToDoListComponent implements OnInit {
   
   toDoList: IToDoList;
+  selectedTask: IToDoTask;
+  @ViewChild(EditTaskComponent) private editComponent: EditTaskComponent;
 
   constructor(private _toDoListService: ToDoListService) { }
 
@@ -18,9 +21,7 @@ export class ToDoListComponent implements OnInit {
     this._toDoListService.getToDoList('Eoghan')
       .subscribe(toDoList => this.toDoList = toDoList,
             error => console.log (<any>error));
-  }
-
-  selectedTask: IToDoTask;
+  }  
 
   selectedTaskChange(event): void {
     this.selectedTask = event;
@@ -30,7 +31,15 @@ export class ToDoListComponent implements OnInit {
     this.selectedTask = <IToDoTask> {dateCreated: Date.now()};
   }
 
-  insertNewTask(event): void {
-    this.toDoList._allTasks.push(this.selectedTask);
+  taskChanged(event): void {
+    if (this.editComponent.isInsert)
+      this.toDoList._allTasks.push(this.selectedTask);
+    else
+      console.log(`Don't need to insert ${this.selectedTask.name}`);
+    
+    //push the list back to the API
+    this._toDoListService.postToDoList(this.toDoList)
+      .subscribe(retVal => console.log(`Got back ${retVal}`),
+            error => console.log(<any>error));
   }
 }
