@@ -10,7 +10,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
   styleUrls: ['./to-do-list.component.css']
 })
 export class ToDoListComponent implements OnInit {
-  
+
   toDoList: IToDoList;
   selectedTask: IToDoTask;
   @ViewChild(EditTaskComponent) private editComponent: EditTaskComponent;
@@ -21,23 +21,23 @@ export class ToDoListComponent implements OnInit {
     this._toDoListService.getToDoList('Eoghan')
       .subscribe(toDoList => this.toDoList = toDoList,
             error => console.log (<any>error));
-  }  
+  }
 
   selectedTaskChange(event): void {
     this.selectedTask = event;
   }
 
-  newTask():void {
+  newTask(): void {
     this.selectedTask = <IToDoTask> {dateCreated: Date.now()};
   }
 
   taskChanged(event): void {
-    if (this.editComponent.isInsert)
+    if (event) {
       this.toDoList._allTasks.push(this.selectedTask);
-    else
+    } else {
       console.log(`Don't need to insert ${this.selectedTask.name}`);
-    
-    //push the list back to the API
+    }
+    // push the list back to the API
     this._toDoListService.postToDoList(this.toDoList)
       .subscribe(retVal => console.log(`Got back ${retVal}`),
             error => console.log(<any>error));

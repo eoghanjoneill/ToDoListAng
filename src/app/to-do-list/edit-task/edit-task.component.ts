@@ -15,11 +15,13 @@ export class EditTaskComponent implements OnInit {
   errorMessage: string;
   deleteMessageEnabled: boolean;
   private _isInsert: boolean = true;
+  @Output()
+  submitted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit() {
-  }  
+  }
 
   get task(): IToDoTask {
     return this._task;
@@ -30,10 +32,10 @@ export class EditTaskComponent implements OnInit {
     if (task) {
       this._originalTask = task;
       this._task = { ...this._originalTask };
-      this.isInsert = !!this._task.name;
-    }    
+      this.isInsert = !!!this._task.name;
+    }
   }
-  
+
   get isInsert(): boolean {
     return this._isInsert;
   }
@@ -42,13 +44,11 @@ export class EditTaskComponent implements OnInit {
     this._operationText = isInsert ? 'Insert' : 'Update';
   }
 
-  @Output()
-  submitted: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   onSubmit() {
-    Object.keys(this._task).forEach(key => this._originalTask[key] = this._task[key]);//save the values into the original task
+    // save the values into the original task
+    Object.keys(this._task).forEach(key => this._originalTask[key] = this._task[key]);
+    this.submitted.emit(this.isInsert);
     this.isInsert = false;
-    this.submitted.emit(true);
   }
 
 }

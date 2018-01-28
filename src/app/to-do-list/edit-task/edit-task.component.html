@@ -3,20 +3,19 @@
     <p>{{operationText}} action:</p>
     <div class='row'>
       <div class='col col-md-3 form-group'>
-        <label for='category'>Category:</label><input class='form-control' type='text' name='category' id='category' [(ngModel)]='task.category' list="">
+        <label for='category'>Category: </label><input class='form-control' type='text' name='category' id='category' [(ngModel)]='task.category' list="">
       </div>
       <div class='col col-md-5 form-group'>
-        <label for='name'>Name:</label><input class='form-control' type='text' name='name' [(ngModel)]='task.name' required >
+        <label for='name'>Name: </label><input class='form-control' type='text' name='name' [(ngModel)]='task.name' required >
       </div>
       <div class='col col-md-2 form-group'>
-        <label>Done?:</label><input class='form-control' type='checkbox' name='done' [(ngModel)]='task.done'>
+        <label for='done'>Done?: </label><input class='form-control' type='checkbox' name='done' [(ngModel)]='task.done'>
       </div>
       <div class='col col-md-2 form-group'>
-        <button type='submit' class='btn btn-success'
-          [disabled]='!taskForm.form.valid' [hidden]='!isInsert'>{{_operationText}}</button>
+        <button type='submit' class='btn btn-primary'
+          [disabled]='!taskForm.form.valid'>{{_operationText}}</button>
       </div>
-    </div>
-    
+    </div>   
     
   </form>
 </section>

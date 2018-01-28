@@ -4,7 +4,7 @@ import { Component, OnInit, Injectable, Input, Output, EventEmitter } from '@ang
 import { IToDoList } from './to-do-list';
 import { ToDoListService } from './to-do-list.service';
 import { IToDoTask } from './to-do-task';
-
+import { Sorter } from '../shared/sorter';
 
 @Component({
   selector: 'app-to-do-table',
@@ -12,18 +12,29 @@ import { IToDoTask } from './to-do-task';
   styleUrls: ['./to-do-table.component.css']
 })
 export class ToDoTableComponent implements OnInit {
-  
+
   @Input()
   tasks: IToDoTask[];
 
   @Output()
   selectedTask: EventEmitter<IToDoTask> = new EventEmitter<IToDoTask>();
 
-  constructor() { }
+  constructor(private _sorter: Sorter) { }
 
   ngOnInit(): void { }
 
-  selectTask(task: IToDoTask) :void {
+  selectTask(task: IToDoTask): void {
     this.selectedTask.emit(task);
   }
+
+  deleteTask(task: IToDoTask): void {
+    const index = this.tasks.indexOf(task);
+    this.tasks.splice(index, 1);
+    this.selectedTask.emit(null);
+  }
+
+  sort(prop: string) {
+    this._sorter.sort(this.tasks, prop);
+  }
 }
+

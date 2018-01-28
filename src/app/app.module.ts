@@ -8,6 +8,7 @@ import { ToDoTableComponent } from './to-do-list/to-do-table.component';
 import { ToDoListService } from './to-do-list/to-do-list.service';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { EditTaskComponent } from './to-do-list/edit-task/edit-task.component';
+import { Sorter } from './shared/sorter';
 
 
 
@@ -23,7 +24,7 @@ import { EditTaskComponent } from './to-do-list/edit-task/edit-task.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ToDoListService],
+  providers: [ToDoListService, Sorter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

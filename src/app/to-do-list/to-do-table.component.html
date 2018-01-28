@@ -2,22 +2,27 @@
   <table class='table' *ngIf='tasks && tasks.length'>
     <thead>
       <tr>
-        <th>Category</th>
-        <th>To Do Task</th>
-        <th>Date Created</th>
-        <th>Done?</th>
-        <th></th>
+        <th (click)='sort("category")'>Category</th>
+        <th (click)='sort("name")'>To Do Task</th>
+        <th (click)='sort("dateCreated")'>Date Created</th>
+        <th (click)='sort("done")'>Done?</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor='let task of tasks'>
         <td>{{task.category}}</td>
-        <td>{{task.name}}</td>
-        <td>{{task.dateCreated | date}}</td>
-        <td class='{{task.done ? "bg-success" : "" }}'>
-          <span class='glyphicon {{task.done ? "glyphicon-ok" : "glyphicon-remove" }}'></span>
+        <td>
+          <del *ngIf='task.done; else notDone'>{{task.name}}</del>
+          <ng-template #notDone>{{task.name}}</ng-template>
         </td>
-        <td><button class='btn' (click)='selectTask(task)'>Edit</button></td>
+        <td>{{task.dateCreated | date}}</td>
+        <td>
+          <input type='checkbox' [(ngModel)]='task.done' (check)='selectTask(task)' class='form-control'>
+        </td>
+        <td><button class='btn btn-default' (click)='selectTask(task)'>Edit</button></td>
+        <td><button class='btn btn-danger' (click)='deleteTask(task)'><span class='glyphicon glyphicon-remove'></span></button></td>
       </tr>
     </tbody>
   </table>
