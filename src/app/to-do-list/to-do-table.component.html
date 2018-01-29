@@ -1,11 +1,11 @@
-<div class='table-responsive'>
+<div class='table-responsive'> 
   <table class='table' *ngIf='tasks && tasks.length'>
     <thead>
       <tr>
-        <th (click)='sort("category")'>Category</th>
-        <th (click)='sort("name")'>To Do Task</th>
-        <th (click)='sort("dateCreated")'>Date Created</th>
-        <th (click)='sort("done")'>Done?</th>
+        <th (click)='sort("category")' class='pointer'>Category<span [class]='_sorter.property === "category" ? sortGlyph() : ""'></span></th>
+        <th (click)='sort("name")' class='pointer'>To Do Task<span [class]='_sorter.property === "name" ? sortGlyph() : ""'></span></th>
+        <th (click)='sort("dateCreated")' class='pointer'>Date Created<span [class]='_sorter.property === "dateCreated" ? sortGlyph() : ""'></span></th>
+        <th (click)='sort("done")' class='pointer'>Done?<span [class]='_sorter.property === "done" ? sortGlyph() : ""'></span></th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>

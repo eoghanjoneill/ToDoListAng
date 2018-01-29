@@ -36,5 +36,14 @@ export class ToDoTableComponent implements OnInit {
   sort(prop: string) {
     this._sorter.sort(this.tasks, prop);
   }
+
+  sortGlyph(): string {
+    if (this._sorter.direction === 1) {
+      return 'glyphicon glyphicon-menu-down';
+    } else {
+      return 'glyphicon glyphicon-menu-up';
+    }
+
+  } 
 }
 
