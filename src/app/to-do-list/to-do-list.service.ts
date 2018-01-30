@@ -10,7 +10,7 @@ import { IToDoList } from './to-do-list';
 
 @Injectable()
 export class ToDoListService {
-  private _toDoListUrl = 'http://localhost:3999/api/todoLists';//'./temp-api/tasks.json';
+  private _toDoListUrl = 'http://lon-dev-eon-01:3999/api/todoLists';//'./temp-api/tasks.json';
 
   constructor(private _http: HttpClient) {}
 
