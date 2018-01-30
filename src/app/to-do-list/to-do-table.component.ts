@@ -38,7 +38,7 @@ export class ToDoTableComponent implements OnInit {
   }
 
   sortGlyph(): string {
-    if (this._sorter.direction === 1) {
+    if (this._sorter.direction === -1) {
       return 'glyphicon glyphicon-menu-down';
     } else {
       return 'glyphicon glyphicon-menu-up';
